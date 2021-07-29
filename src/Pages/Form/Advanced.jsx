@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import Select from 'react-select'; //https://react-select.com/home
 import makeAnimated from 'react-select/animated';
 import DateRangePicker from 'react-bootstrap-daterangepicker'; //https://www.npmjs.com/package/bootstrap-daterangepicker-react
@@ -29,6 +29,22 @@ const Select2 = () => {
       { value: 'vanilla', label: 'Vanilla' },
     ];
 
+    const showSelected = (selectedOptions) => {
+        if(selectedOptions) alert(selectedOptions.value);
+    }
+
+    const showMultiSelected = (selectedOptions) => {
+        var show = '';
+
+        if(selectedOptions) {
+            selectedOptions.forEach((selected) => {
+                show = show+' '+selected.label
+            })
+            alert(show);
+        }
+    }
+    
+
     return (
         <div className="row row-sm">
             <div className="col-lg-12 col-md-12">
@@ -39,18 +55,20 @@ const Select2 = () => {
                     <div className="card-body">
                         <div className="row">
 
-                            <div className="col-md-4">
-                                <label className="font-12">Single Select</label>
+                            <div className="col-md-3 mb-3">
+                                <label>Single Select</label>
                                 <Select 
                                     defaultValue={selectedOption} 
                                     options={options} 
                                     onChange={setSelectedOption}
-                                    isClearable='true'components={animatedComponents}
+                                    isClearable='true' 
+                                    components={animatedComponents}
+                                    onChange={ showSelected }
                                 />
                             </div>
                             
-                            <div className="col-md-4">
-                                <label className="font-12">Multiple Select</label>
+                            <div className="col-md-3 mb-3">
+                                <label>Multiple Select</label>
                                 <Select 
                                     defaultValue={selectedOption} 
                                     options={options} 
@@ -58,15 +76,51 @@ const Select2 = () => {
                                     components={animatedComponents}
                                     isClearable='true'
                                     isMulti
+                                    onChange={showMultiSelected}
                                 />
                             </div>
 
-                            <div className="col-md-4">
-                                <label className="font-12">Disabled</label>
+                            <div className="col-md-3 mb-3">
+                                <label>Disabled</label>
                                 <Select 
                                     defaultValue={selectedOption} 
                                     options={options} 
                                     isDisabled
+                                />
+                            </div>
+                            
+                            <div className="col-md-3 mb-3">
+                                <label>Invalid</label>
+                                <Select 
+                                    className="border border-danger"
+                                    defaultValue={selectedOption} 
+                                    options={options} 
+                                />
+                            </div>
+
+                            
+                            <div className="col-md-3 mb-3">
+                                <label>With Styles</label>
+                                <Select 
+                                    className="tx-12"
+                                    defaultValue={selectedOption} 
+                                    options={options}                                     
+                                    styles={{
+                                        control: base => ({
+                                            ...base,
+                                            fontSize: 12,
+                                        }),                                        
+                                        dropdownIndicator: (base) => ({
+                                            ...base,
+                                            paddingTop: 0,
+                                            paddingBottom: 0,
+                                        }),
+                                        clearIndicator: (base) => ({
+                                            ...base,
+                                            paddingTop: 0,
+                                            paddingBottom: 0,
+                                        }),
+                                    }}
                                 />
                             </div>
                         </div>
@@ -155,11 +209,55 @@ const DatePicker = () => {
 
 const DropZoneComponent = () => {
 
+    //https://react-dropzone.js.org/
+
     const onDrop = useCallback(acceptedFiles => {
         console.log(acceptedFiles);
     }, [])
 
-    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop});
+    const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
+        onDrop,
+        accept:'image/*'
+    });
+
+    const baseStyle = {
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '20px',
+        borderWidth: 2,
+        borderRadius: 2,
+        borderColor: '#eeeeee',
+        borderStyle: 'dashed',
+        backgroundColor: '#fafafa',
+        color: '#bdbdbd',
+        outline: 'none',
+        transition: 'border .24s ease-in-out'
+    };
+    
+    const activeStyle = {
+        borderColor: '#2196f3'
+    };
+    
+    const acceptStyle = {
+        borderColor: '#00e676'
+    };
+    
+    const rejectStyle = {
+        borderColor: '#ff1744'
+    };
+
+    const style = useMemo(() => ({
+        ...baseStyle,
+        ...(isDragActive ? activeStyle : {}),
+        ...(isDragAccept ? acceptStyle : {}),
+        ...(isDragReject ? rejectStyle : {})
+      }), [
+        isDragActive,
+        isDragReject,
+        isDragAccept
+      ]);
 
 
     return (
@@ -173,7 +271,7 @@ const DropZoneComponent = () => {
                         <div className="row">
                             <div className="col-md-6 dropify-wrapper">
                                 
-                                <div {...getRootProps()}>
+                                <div {...getRootProps({style})}>
                                     <input {...getInputProps()} />
                                     {
                                     isDragActive ?

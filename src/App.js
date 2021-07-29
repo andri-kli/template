@@ -2,6 +2,7 @@ import { Route, Switch, useLocation } from "react-router-dom";
 import Sidebar from "./Components/Sidebar";
 import Topbar from "./Components/Topbar";
 import Dashboard from "./Pages/Dashboard";
+import Element from "./Pages/Elements/Element";
 import Form from "./Pages/Form/Form";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
               <Switch>
                 <Route path="/dashboard" component={Dashboard} />
                 <Route path="/form/:type" component={Form}/>
+                <Route path="/elements/:type" component={Element}/>
               </Switch>
             </div>
           </div>

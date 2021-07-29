@@ -46,16 +46,17 @@ function Sidebar(props) {
               </ul>
             </li>
 
-            <li className="nav-item">
+            <li className={ pathname === 'elements' ? 'nav-item active show' : 'nav-item'}>
               <a className="nav-link with-sub" href="#">
                 <span className="shape1" /><span className="shape2" />
                 <i className="ti-wallet sidemenu-icon" />
-                <span className="sidemenu-label">Component</span>
+                <span className="sidemenu-label">Elements</span>
                 <i className="angle fe fe-chevron-right" />
               </a>
               <ul className="nav-sub">
-                <li className="nav-sub-item"> <a className="nav-sub-link" href="crypto-dashbaord.html">Form</a> </li>
-                <li className="nav-sub-item"> <a className="nav-sub-link" href="crypto-market.html">Marketcap</a> </li>
+                <li className="nav-sub-item">
+                  <Link className="nav-sub-link" to="/elements/modal">Modal</Link> 
+                </li>
               </ul>
             </li>
 
