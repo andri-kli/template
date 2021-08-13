@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Sidebar(props) {
@@ -30,12 +29,12 @@ function Sidebar(props) {
             </li>
 
             <li className={ pathname === 'form' ? 'nav-item active show' : 'nav-item'} >
-              <a className="nav-link with-sub" href="#">
+              <div className="nav-link with-sub">
                 <span className="shape1" /><span className="shape2" />
                 <i className="ti-wallet sidemenu-icon" />
                 <span className="sidemenu-label">Form</span>
                 <i className="angle fe fe-chevron-right" />
-              </a>
+              </div>
               <ul className="nav-sub">
                 <li className={subPath === 'basic' ? 'nav-sub-item active' : 'nav-sub-item' }> 
                   <Link className="nav-sub-link" to="/form/basic">Basic</Link> 
@@ -47,28 +46,32 @@ function Sidebar(props) {
             </li>
 
             <li className={ pathname === 'elements' ? 'nav-item active show' : 'nav-item'}>
-              <a className="nav-link with-sub" href="#">
+              <div className="nav-link with-sub">
                 <span className="shape1" /><span className="shape2" />
                 <i className="ti-wallet sidemenu-icon" />
                 <span className="sidemenu-label">Elements</span>
                 <i className="angle fe fe-chevron-right" />
-              </a>
+              </div>
               <ul className="nav-sub">
-                <li className="nav-sub-item">
+                <li className={subPath === 'modal' ? 'nav-sub-item active' : 'nav-sub-item' }>
                   <Link className="nav-sub-link" to="/elements/modal">Modal</Link> 
+                </li>
+                <li className={subPath === 'spinner' ? 'nav-sub-item active' : 'nav-sub-item' }>
+                  <Link className="nav-sub-link" to="/elements/spinner">Spinner</Link> 
+                </li>
+                <li className={subPath === 'pagination' ? 'nav-sub-item active' : 'nav-sub-item' }>
+                  <Link className="nav-sub-link" to="/elements/pagination">Pagination</Link> 
+                </li>
+                <li className={subPath === 'toast' ? 'nav-sub-item active' : 'nav-sub-item' }>
+                  <Link className="nav-sub-link" to="/elements/toast">Toast</Link> 
+                </li>
+                <li className={subPath === 'loading-overlay' ? 'nav-sub-item active' : 'nav-sub-item' }>
+                  <Link className="nav-sub-link" to="/elements/loading-overlay">Loading Overlay</Link> 
                 </li>
               </ul>
             </li>
 
-            <li className="nav-header"><span className="nav-label">Applications</span></li>
-            <li className="nav-item"> <a className="nav-link" href="widgets.html"><span className="shape1" /><span className="shape2" /><i className="ti-server sidemenu-icon" /><span className="sidemenu-label">Widgets</span></a> </li>
-            <li className="nav-item">
-              <a className="nav-link with-sub" href="#"><span className="shape1" /><span className="shape2" /><i className="ti-email sidemenu-icon" /><span className="sidemenu-label">Mail</span><span className="badge badge-warning side-badge">2</span></a>
-              <ul className="nav-sub">
-                <li className="nav-sub-item"> <a className="nav-sub-link" href="mail-inbox.html">Mail-Inbox</a> </li>
-                <li className="nav-sub-item"> <a className="nav-sub-link" href="viewmail.html">View-Mail</a> </li>
-              </ul>
-            </li>
+            
 
           </ul>
         </div>

@@ -1,34 +1,18 @@
-import { Route, Switch, useLocation } from "react-router-dom";
-import Sidebar from "./Components/Sidebar";
-import Topbar from "./Components/Topbar";
-import Dashboard from "./Pages/Dashboard";
-import Element from "./Pages/Elements/Element";
-import Form from "./Pages/Form/Form";
+import { useLocation } from "react-router-dom";
+
+
+import Routes from "./Route/Routes";
+import { Provider } from "react-redux";
+import AuthStore from './Reducer';
 
 function App() {
   
-  const pathname = useLocation().pathname.split('/');
-  
   return (
-
-    <div className="page">
-      <div className="main-content side-content pt-0">
-          <Sidebar path={{pathname: pathname[1], subPathName: pathname[2]}}></Sidebar>
-          <Topbar></Topbar>
-
-          <div className="container-fluid">
-            <div className="inner-body">
-              <Switch>
-                <Route path="/dashboard" component={Dashboard} />
-                <Route path="/form/:type" component={Form}/>
-                <Route path="/elements/:type" component={Element}/>
-              </Switch>
-            </div>
-          </div>
-      </div>
-    </div>
-          
-  );
+    <Provider store={AuthStore}>
+      <Routes />
+    </Provider>
+  )
+  
 }
 
 export default App;

@@ -3,19 +3,19 @@ import avatar from '../assets/img/avatar/profile.png';
 
 function Topbar(props) {
     return (
-        <div>
+        <div className="mb-5">
             <div className="main-header side-header sticky sticky-pin" style={{marginBottom: '-64px'}}>
         <div className="container-fluid">
-          <div className="main-header-left"> <a className="main-header-menu-icon" href="#" id="mainSidebarToggle"><span /></a> </div>
+          <div className="main-header-left"> <a className="main-header-menu-icon" href="true" id="mainSidebarToggle"><span /></a> </div>
           <div className="main-header-center">
             <div className="responsive-logo"> <a href="index.html"><img src="../assets/img/brand/logo.png" className="mobile-logo" alt="logo" /></a> <a href="index.html"><img src="../assets/img/brand/logo-light.png" className="mobile-logo-dark" alt="logo" /></a> </div>
             
           </div>
           <div className="main-header-right">
-            <div className="dropdown d-md-flex"> <a className="nav-link icon full-screen-link" href> <i className="fe fe-maximize fullscreen-button fullscreen header-icons" /> <i className="fe fe-minimize fullscreen-button exit-fullscreen header-icons" /> </a> </div>
+            <div className="dropdown d-md-flex"> <a className="nav-link icon full-screen-link" href='true'> <i className="fe fe-maximize fullscreen-button fullscreen header-icons" /> <i className="fe fe-minimize fullscreen-button exit-fullscreen header-icons" /> </a> </div>
             
             <div className="dropdown main-header-notification">
-              <a className="nav-link icon" href> <i className="fe fe-bell header-icons" /> <span className="badge badge-danger nav-link-badge">4</span> </a> 
+              <a className="nav-link icon" href='true'> <i className="fe fe-bell header-icons" /> <span className="badge badge-danger nav-link-badge">4</span> </a> 
               <div className="dropdown-menu">
                 <div className="header-navheading">
                   <p className="main-notification-text">You have 1 unread notification<span className="badge badge-pill badge-primary ml-3">View all</span></p>
@@ -43,12 +43,12 @@ function Topbar(props) {
                     </div>
                   </div>
                 </div>
-                <div className="dropdown-footer"> <a href="#">View All Notifications</a> </div>
+                <div className="dropdown-footer"> <a href="true">View All Notifications</a> </div>
               </div>
             </div>
             
             <div className="dropdown main-profile-menu" role="button">
-              <a className="d-flex" href> <span className="main-img-user"><img alt="avatar" src={avatar} /></span> </a> 
+              <a className="d-flex" href="true"> <span className="main-img-user"><img alt="avatar" src={avatar} /></span> </a> 
               <div className="dropdown-menu">
                 <div className="header-navheading">
                   <h6 className="main-notification-title">Andri Andreas</h6>
